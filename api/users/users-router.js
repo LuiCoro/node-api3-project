@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
       res.status(404).json({message: 'User needs a name!'})
     } else {
       const newUser = await Users.insert({name})
-      res.status(200).json(newUser)
+      res.status(201).json(newUser)
     }
 
   } catch (error) {
@@ -73,7 +73,7 @@ router.put('/:id', async (req, res) => {
       if(updatedUser) {
         res.status(200).json(updatedUser)
       } else {
-        res.status(404).json({message: 'User not found'})
+        res.status(400).json({message: 'User not found'})
       }
     }
 
@@ -129,7 +129,7 @@ router.post('/:id/posts', async (req, res) => {
   try{
     const {text, user_id} = req.body
     if(!text || ! user_id) {
-      res.status(400).json({message: 'Posts need some text my dude!'})
+      res.status(404).json({message: 'Posts need some text my dude!'})
     } else {
       const newPost = await Posts.insert({text, user_id})
       res.status(201).json(newPost)

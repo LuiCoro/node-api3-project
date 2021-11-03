@@ -1,3 +1,5 @@
+const Users = require('../users/users-model')
+
 function logger(req, res, next) {
   // DO YOUR MAGIC
   console.log(
